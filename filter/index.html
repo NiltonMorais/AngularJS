@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <title>Pessoas</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="CtrlApp">
+    <h1>{{frase | case: 'upper'}}</h1>
+</div>
+<script>
+    angular.module('App', [])
+            .filter('upper', function(){
+                return function(input){
+                    return input.toUpperCase();
+                }
+            })
+            .filter('lower', function(){
+                return function(input){
+                    return input.toLowerCase();
+                }
+            })
+            .filter('case', function(){
+                return function(input, type){
+                    if(type == 'upper'){
+                        return input.toUpperCase();
+                    }
+                    return input.toLowerCase();
+                }
+            })
+            .controller('CtrlApp', function($scope){
+                $scope.frase = "Olá, meu nome é Nilton";
+            });
+</script>
+</body>
+</html>
